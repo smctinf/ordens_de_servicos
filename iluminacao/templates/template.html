@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    {% load static %} {% load bootstrap5 %} {% bootstrap_css %} {%bootstrap_javascript %}
+    <meta charset="UTF-8" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="{% static 'favicon.ico' %}"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {% block title %}{% endblock %} - Ordem de Serviço Nova Friburgo
+    </title>
+    <!-- CUSTOM CSS -->
+    <link rel="stylesheet" href="{% static 'css/template.css' %}" />
+    {% block css %}{% endblock %}
+    <!-- END CUSTOM CSS -->
+
+    <!-- CUSTOM JS -->
+    {% block head_js %}{% endblock %}
+    <!-- END CUSTOM JS -->
+  </head>
+
+  <body>
+    {% block header%}{% endblock %}
+    <main>{% block main %}{% endblock %}</main>
+    {% block footer%}{% endblock %}
+  </body>
+
+  <!-- CUSTOM END JS -->
+  {% block end_js %}{% endblock %}
+  <!-- END CUSTOM END JS -->
+</html>

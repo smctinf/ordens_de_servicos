@@ -1,0 +1,24 @@
+{% extends 'template.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+{% endblock %}
+
+{% block head_js %}
+{% endblock %}
+
+{% block header %}
+{% include 'header.html' %}
+{% endblock %}
+
+<main>
+{% block main%}
+{% endblock %}
+</main>
+
+{% block footer %}
+{% include 'footer.html' %}
+{% endblock %}
+
+{% block end_js %}
+{% endblock %}
