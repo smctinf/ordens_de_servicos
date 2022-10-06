@@ -18,7 +18,9 @@ body {
   --font-weight-bold: 600;
   --font-weight-medium: 500;
   --font-weight-light: 400;
-  --font-family: "Rubik", -apple-system, sans-serif;
+  --font-family: system-ui, -apple-system, "Segoe UI", 'Roboto', "Helvetica Neue",
+    Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-size-xs: 0.75rem; /* 12 */
   --font-size-sm: 0.875rem; /* 14 */
   --font-size-md: 1rem; /* 16 */
@@ -40,7 +42,6 @@ body {
 a {
   text-decoration: none;
   color: inherit;
-  font-weight: var(--font-weight-bold);
   transition: 160ms;
 }
 a:hover {
@@ -84,7 +85,6 @@ h4,
 h5,
 h6,
 strong {
-  font-weight: var(--font-weight-bold);
   color: var(--text);
 }
 #root,
@@ -101,4 +101,10 @@ ol {
 body {
   display: grid;
   grid-template-rows: auto 1fr auto;
+}
+.logo {
+  height: 100px;
+}
+.navbar-nav{
+  gap: 50px;
 }
