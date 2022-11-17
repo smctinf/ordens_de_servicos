@@ -7,4 +7,4 @@ class OS_Form(ModelForm):
     
     class Meta:
         model = OrdemDeServico
-        exclude = ['numero', 'dt_inclusao', 'atendente', 'dt_conclusao']
+        exclude = ['numero', 'dt_inclusao', 'atendente', 'dt_conclusao', 'prioridade', 'status']

@@ -5,8 +5,13 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     return render(request, 'index.html')
 
-# def os_index(request):
-#     return render(request, 'index.html')
+def os_index(request):
+    oss=OrdemDeServico.objects.all()
+    context={
+        'oss': oss
+    }
+    return render(request, 'iluminacao/index.html', context)
+
 
 @login_required
 def add_os(request):
@@ -21,3 +26,15 @@ def add_os(request):
         'form': form
     }
     return render(request, 'iluminacao/adicionar_os.html', context)
+
+
+def detalhes_os(request, id):
+    os=OrdemDeServico.objects.get(id=id)
+    if request.method=='POST':        
+        pass
+    else:
+        pass
+    context={
+        'os': os
+    }
+    return render(request, 'iluminacao/detalhes_os.html', context)
