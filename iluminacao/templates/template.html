@@ -28,9 +28,9 @@
   </head>
 
   <body class="container-fluid" cz-shortcut-listen="true">
-    {% block header%}{% endblock %}
+    {% include 'header.html' %}
     <main class='row'>{% block main %}{% endblock %}</main>
-    {% block footer%}{% endblock %}
+    {% include 'footer.html' %}
   </body>
 
   <!-- CUSTOM END JS -->

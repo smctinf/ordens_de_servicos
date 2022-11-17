@@ -2,7 +2,7 @@ from tabnanny import verbose
 from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.contrib.auth.models import User
-
+from almoxerifado.models import Material
 
 class Bairro(models.Model):
     nome = models.CharField(max_length=150, verbose_name='Bairro')
@@ -20,28 +20,48 @@ class Endereco(models.Model):
     logradouro = models.ForeignKey(
         Logradouro, verbose_name='Logradouro', on_delete=models.PROTECT)
 
+class Tipo_OS(models.Model):
+    
+    nome=models.CharField(max_length=100, verbose_name='Tipo de OS', blank=True)
+    
+    def __str__(self):
+        return self.nome
 
-# Create your models here.
 class Contribuinte(models.Model):
-    telefone = models.CharField(
-        max_length=14, verbose_name='Telefone', blank=True)
+    telefone = models.CharField(max_length=14, verbose_name='Telefone', blank=True)
     cpf = models.CharField(max_length=14, verbose_name='CPF')
     nome = models.CharField(max_length=100)
 
+class Equipe(models.Model):
+    telefone = models.CharField(max_length=14, verbose_name='Telefone', blank=True)
+    cpf = models.CharField(max_length=14, verbose_name='CPF')
+    nome = models.CharField(max_length=100)
 
 class OrdemDeServico(models.Model):
-    numero = models.CharField(max_length=130)
-    motivo_reclamacao = models.CharField(max_length=150, blank=True)
-    dt_solicitacao = models.CharField(
-        max_length=20, verbose_name='Data de solicitação', blank=True)
-    dt_conclusao = models.CharField(
-        max_length=20, verbose_name='Data de conclusão', blank=True)
-    atendente = models.ForeignKey(User, on_delete=models.PROTECT)
-    contribuinte = models.ForeignKey(Contribuinte, on_delete=models.PROTECT)
-    motivo = models.CharField(max_length=150)
-    # VEICULO ???
+    tipo=models.ForeignKey(Tipo_OS, on_delete=models.PROTECT, null=True)
+    numero = models.CharField(max_length=130, verbose_name='Nº da OS')
+    
+    dt_solicitacao = models.DateTimeField(auto_now_add=True, verbose_name='Data de solicitação', blank=True)
+    atendente = models.ForeignKey(User, on_delete=models.PROTECT, blank=True, null=True)
+    
+    logradouro = models.CharField(max_length=150, verbose_name='Logradouro')
+    bairro = models.CharField(max_length=150, verbose_name='Bairro')
+    referencia = models.CharField(max_length=200, verbose_name='Referência', blank=True)
 
-# class *(models.Model):
-#     id_OS=models.ForeignKey(OrdemDeServico, verbose_name='')
-#     codigo_veiculo=models.CharField(max_length=20, verbose_name='Código do veículo', blank=True)
-#     equipe = models.ManyToManyField(User)
+    nome = models.CharField(max_length=100, verbose_name='Nome do contribuinte')
+    cpf = models.CharField(max_length=14, verbose_name='CPF do contribuinte')
+    telefone = models.CharField(max_length=14, verbose_name='Telefone do contribuinte', blank=True)    
+
+    motivo_reclamacao = models.TextField(verbose_name='Motivo da reclamação')            
+    
+    dt_conclusao = models.DateTimeField(verbose_name='Data de conclusão', blank=True, null=True)
+
+class OS_ext(models.Model):    
+    os=models.ForeignKey(OrdemDeServico, on_delete=models.PROTECT)
+    equipe=models.ManyToManyField(Equipe, blank=True, null=True)
+    cod_veiculo=models.CharField(max_length=14, verbose_name='Código do veículo', blank=True)
+
+class MateriaisUsados(models.Model):
+    os=models.ForeignKey(OrdemDeServico, on_delete=models.PROTECT)
+    material=models.ForeignKey(Material, on_delete=models.PROTECT)
+    quantidade=models.IntegerField()
