@@ -43,7 +43,7 @@
                               {% for os in oss %}
                               <tr>
                                 <td>
-                                  <a href="{{os.id}}" style="text-decoration: none;">
+                                  <a href="{% url 'detalhes_os' os.id %}" style="text-decoration: none;">
                                     <i class="fa-solid fa-eye"></i>
                                   </a>
                                 </td>
