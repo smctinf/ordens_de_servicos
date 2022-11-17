@@ -5,7 +5,11 @@ def index(request):
     return render(request, 'index.html')
 
 def os_index(request):
-    return render(request, 'index.html')
+    oss=OrdemDeServico.objects.all()
+    context={
+        'oss': oss
+    }
+    return render(request, 'iluminacao/index.html', context)
 
 
 def add_os(request):

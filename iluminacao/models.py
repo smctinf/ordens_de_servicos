@@ -23,7 +23,7 @@ class Endereco(models.Model):
 class Tipo_OS(models.Model):
     
     nome=models.CharField(max_length=100, verbose_name='Tipo de OS', blank=True)
-    
+    sigla=models.CharField(max_length=10, verbose_name='Tipo de OS', blank=True, null=True)
     def __str__(self):
         return self.nome
 
@@ -38,9 +38,21 @@ class Equipe(models.Model):
     nome = models.CharField(max_length=100)
 
 class OrdemDeServico(models.Model):
+    STATUS_CHOICES=(
+        ('0','Novo'),
+        ('1','Aguardando'),
+        ('2','Execução'),
+    )
+    PRIORIDADE_CHOICES=(
+        ('0','Normal'),
+        ('1','Urgente'),
+    )
+
+    
     tipo=models.ForeignKey(Tipo_OS, on_delete=models.PROTECT, null=True)
     numero = models.CharField(max_length=130, verbose_name='Nº da OS')
-    
+    prioridade =models.CharField(max_length=1, verbose_name='Prioridae', choices=PRIORIDADE_CHOICES, null=True)
+
     dt_solicitacao = models.DateTimeField(auto_now_add=True, verbose_name='Data de solicitação', blank=True)
     atendente = models.ForeignKey(User, on_delete=models.PROTECT, blank=True, null=True)
     
@@ -54,6 +66,8 @@ class OrdemDeServico(models.Model):
 
     motivo_reclamacao = models.TextField(verbose_name='Motivo da reclamação')            
     
+    status =models.CharField(max_length=1, verbose_name='Status', choices=STATUS_CHOICES, null=True)
+
     dt_conclusao = models.DateTimeField(verbose_name='Data de conclusão', blank=True, null=True)
 
 class OS_ext(models.Model):    
