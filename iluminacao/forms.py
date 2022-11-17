@@ -11,4 +11,4 @@ class OS_Form(ModelForm):
             'cpf': forms.TextInput(attrs={'onkeydown':'mascara(this, icpf)'}),
             'telefone': forms.TextInput(attrs={'onkeydown':'mascara(this, itel)'})
         }
-        exclude = ['numero', 'dt_inclusao', 'atendente', 'dt_conclusao']
+        exclude = ['numero', 'dt_inclusao', 'atendente', 'dt_conclusao', 'prioridade', 'status']
