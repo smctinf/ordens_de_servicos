@@ -7,13 +7,13 @@ def index(request):
     context={
         'materiais': materiais
     }
-    return render(request, 'almoxerifado/index.html', context)
+    return render(request, 'almoxarifado/index.html', context)
 
 def listar_tipo_materiais(request):
     context={
         'tipos':Tipo_Material.objects.all()
     }
-    return render(request, 'almoxerifado/listar_materiais.html', context)
+    return render(request, 'almoxarifado/listar_materiais.html', context)
 
 def adicionar_tipo_materiais(request):
     if request.method=='POST':
@@ -27,7 +27,7 @@ def adicionar_tipo_materiais(request):
     context={
         'form': form
     }
-    return render(request, 'almoxerifado/adicionar_tipo_materiais.html', context)
+    return render(request, 'almoxarifado/adicionar_tipo_materiais.html', context)
 
 def adicionar_material(request):    
     if request.method=='POST':
@@ -41,7 +41,7 @@ def adicionar_material(request):
     context={
         'form': form
     }
-    return render(request, 'almoxerifado/adicionar_novo_material.html', context)
+    return render(request, 'almoxarifado/adicionar_novo_material.html', context)
 
 
 def adicionar_material_ao_estoque(request):    
@@ -65,4 +65,4 @@ def adicionar_material_ao_estoque(request):
         'form': form,
         'form_tipo': form_tipo
     }
-    return render(request, 'almoxerifado/adicionar_material_ao_estoque.html', context)
+    return render(request, 'almoxarifado/adicionar_material_ao_estoque.html', context)

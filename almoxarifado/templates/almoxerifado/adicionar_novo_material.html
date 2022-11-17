@@ -3,7 +3,7 @@
 {% load static%}
 {% block title %}BEM VINDO - CURSOS LIVRES{% endblock %}
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/almoxerifado.css' %}">
+<link rel="stylesheet" href="{% static 'css/almoxarifado.css' %}">
 
 {% endblock %}
 {% block administrativo %}fw-bold{% endblock %}
@@ -14,18 +14,20 @@
             <div class="col-10 pb-4 m-auto bg-white">
                 <div class="row py-3 px-4">
                     <div class="col bg p-5">
-                        <h1 class="display-4 text-center">Almoxerifado</h1>
+                        <h1 class="display-4 text-center">Almoxarifado</h1>
                     </div>
                 </div>              
                 <div class="row">
                     <div class="col px-4 d-flex">
-                        <a class="ms-auto" href="{% url 'alm_listar_tipos' %}">Voltar</a>
+                        <a class="ms-auto" href="{% url 'alm_listar_tipos' %}">
+                          <i class="fa-solid fa-rotate-left me-2"></i>Voltar
+                        </a>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col px-4">
                         <form method="POST">
-                          <h4>Formulário p/ adicionar tipo de material</h4>
+                          <h4>Formulário de cadastro de novo material</h4>
                           {% csrf_token %}
                           {% bootstrap_form form %}
                           <button type="submit" class="btn btn-primary">

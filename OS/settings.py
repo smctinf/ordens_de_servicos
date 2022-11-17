@@ -74,7 +74,7 @@ INSTALLED_APPS = [
     'fontawesomefree',
     #apps
     'iluminacao',
-    'almoxerifado',
+    'almoxarifado',
 ]
 
 MIDDLEWARE = [
