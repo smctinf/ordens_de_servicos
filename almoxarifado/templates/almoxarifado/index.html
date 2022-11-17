@@ -57,6 +57,18 @@
   </div>
 </div>
 <!-- MODAL -->
+<!-- MODAL -->
+{% if messages %}
+
+<div class="warnings"></div>
+<script>
+  {% for message in messages %}
+  Message.push("{{ message|escape }}")
+  console.log("{{ message|escape }}")
+  {% endfor %}
+</script>
+{% endif %} 
+
 <div class="modal fade" id="formCandidato" aria-hidden="true" aria-labelledby="formCandidatoLabel" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
