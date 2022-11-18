@@ -18,9 +18,6 @@
               <a class="ms-auto" href="{% url 'alm_adicionar_tipo' %}">
                 <i class="fa-solid fa-plus me-2"></i>Tipo Material
               </a>
-              <a class="ms-4" href="{% url 'alm_adicionar_material' %}">
-                <i class="fa-solid fa-plus me-2"></i>Novo Material
-              </a>
               <a class="ms-4" href="{% url 'alm_index' %}">
                 <i class="fa-solid fa-rotate-left me-2"></i>Voltar
               </a>
@@ -41,7 +38,7 @@
                       ></a>
                       <span>{{tipo.nome}}</span>
 
-                      <a class="ms-auto" href="{% url 'alm_adicionar_tipo' %}">
+                      <a class="ms-auto" href="{% url 'alm_adicionar_material' tipo.id%}">
                         <i class="fa-solid fa-plus me-2"></i>
                       </a>
                       <button

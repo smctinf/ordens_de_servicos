@@ -40,7 +40,9 @@ def adicionar_tipo_materiais(request):
     return render(request, 'almoxarifado/adicionar_tipo_materiais.html', context)
 
 
-def adicionar_material(request):
+def adicionar_material(request, tipo):
+    tipo = Tipo_Material.objects.get(id=tipo)
+
     if request.method == 'POST':
         form = Material_Form(request.POST)
         if form.is_valid():
@@ -48,7 +50,7 @@ def adicionar_material(request):
             messages.success(request, 'Material cadastrado!')
             return redirect('alm_listar_tipos')
     else:
-        form = Material_Form()
+        form = Material_Form(initial={'tipo': tipo.id})
 
     context = {
         'form': form
@@ -77,7 +79,6 @@ def adicionar_material_ao_estoque(request):
         form_tipo = Exibir_Tipo_Material_Form()
 
     context = {
-
         'form': form,
         'form_tipo': form_tipo
     }
