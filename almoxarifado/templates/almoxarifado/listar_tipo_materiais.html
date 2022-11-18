@@ -35,16 +35,20 @@
                 <tbody>
                   {% for tipo in tipos %}
                   <tr>
-                    <td class="d-flex">
-                      <a class="me-2" href="#"
+                    <td class="d-flex align-items-center">
+                      <a class="me-2 " href="#"
                         ><i class="fa-solid fa-pen-to-square"></i
                       ></a>
-                      {{tipo.nome}}
+                      <span>{{tipo.nome}}</span>
+
+                      <a class="ms-auto" href="{% url 'alm_adicionar_tipo' %}">
+                        <i class="fa-solid fa-plus me-2"></i>
+                      </a>
                       <button
-                        class="ms-auto"
+                        class="btn btn-link p-0"
                         onclick="listar_materiais({{tipo.id}})"
                       >
-                        Listar materiais
+                      <i class="fa-solid fa-eye"></i>
                       </button>
                     </td>
                   </tr>
@@ -56,7 +60,7 @@
           <div class="col">
             <div class="px-2 pt-4">
               <h4>Materiais</h4>
-              <table>
+              <table class="table table-striped">
                 <tbody id="material">
                   <tr>
                     <td>
@@ -167,15 +171,28 @@
     const json = await response.json();
     const materiais = document.querySelector('#material')
     materiais.innerHTML= ""
-    json.data.forEach(e=>{
-      const tr = document.createElement('tr');
-      const td = document.createElement('td');
+    if(json.data.length){
+      json.data.forEach(e=>{
+        const tr = document.createElement('tr');
+        const td = document.createElement('td');
+        td.className = "d-flex align-items-center"
+  
+        td.innerHTML = e.nome
+        tr.appendChild(td)
+  
+        materiais.append(tr)
+      })
+    } else {
+        const tr = document.createElement('tr');
+        const td = document.createElement('td');
+        td.className = "d-flex align-items-center"
+  
+        td.innerHTML = "Nenhum material cadastrado"
+        tr.appendChild(td)
+  
+        materiais.append(tr)
+    }
 
-      td.innerHTML = e.nome
-      tr.appendChild(td)
-
-      materiais.append(tr)
-    })
   }
 </script>
 {% endblock %}
