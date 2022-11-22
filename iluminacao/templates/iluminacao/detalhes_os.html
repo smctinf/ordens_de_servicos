@@ -4,7 +4,6 @@
 {% block title %}BEM VINDO - CURSOS LIVRES{% endblock %}
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/almoxarifado.css' %}">
-
 {% endblock %}
 {% block os %}fw-bolder{% endblock %}
 {% block main %}
@@ -30,8 +29,7 @@
                             <div class="col d-flex">                              
                               <button class="ms-auto my-auto py-1 px-4 text-capitalize btn {% if os.status == '0'%}btn-info text-white{% endif %} px-2 py-0">
                                   {{os.get_status_display}}
-                              </button>
-                              
+                              </button>                              
                             </div>
                           </div>
                           <div class="row">
@@ -76,11 +74,9 @@
                                 <p class="d-flex"><b class="me-auto">Terminar isso depois</b></p>
                               </div>                              
                             </div>
-                          </div>
-                         
+                          </div>                         
                         </div>
-                    </div>
-                    
+                    </div>                    
                 </div>
             </div>
         </div>    
