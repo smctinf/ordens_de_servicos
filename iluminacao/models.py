@@ -32,7 +32,7 @@ class Contribuinte(models.Model):
     cpf = models.CharField(max_length=14, verbose_name='CPF')
     nome = models.CharField(max_length=100)
 
-class Equipe(models.Model):
+class Funcionario(models.Model):
     telefone = models.CharField(max_length=14, verbose_name='Telefone', blank=True)
     cpf = models.CharField(max_length=14, verbose_name='CPF')
     nome = models.CharField(max_length=100)
@@ -72,7 +72,7 @@ class OrdemDeServico(models.Model):
 
 class OS_ext(models.Model):    
     os=models.ForeignKey(OrdemDeServico, on_delete=models.PROTECT)
-    equipe=models.ManyToManyField(Equipe, blank=True, null=True)
+    equipe=models.ManyToManyField(Funcionario, blank=True, null=True)
     cod_veiculo=models.CharField(max_length=14, verbose_name='Código do veículo', blank=True)
 
 class MateriaisUsados(models.Model):

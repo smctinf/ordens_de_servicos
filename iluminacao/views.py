@@ -38,3 +38,37 @@ def detalhes_os(request, id):
         'os': os
     }
     return render(request, 'iluminacao/detalhes_os.html', context)
+
+def funcionario_listar(request):
+    funcionarios=Funcionario.objects.all()
+    context={
+        'funcionarios': funcionarios
+    }
+    return render(request, 'equipe/funcionarios.html', context)
+
+def funcionario_cadastrar(request):
+    if request.method=='POST':
+        form=Funcionario_Form(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('funcionarios')
+    else:
+        form=Funcionario_Form()
+        context={
+            'form': form
+        }
+    return render(request, 'equipe/funcionarios_cadastrar.html', context)
+
+def funcionario_editar(request, id):
+    funcionario=Funcionario.objects.get(id=id)
+    form_funcionario=Funcionario_Form(instance=funcionario)
+    if request.method=='POST':
+        form=Funcionario_Form(request.POST, instance=funcionario)
+        if form.is_valid():
+            form.save()
+            return redirect('funcionarios')
+    context={
+        'form': form,
+        'funcionario': funcionario
+    }     
+    return render(request, 'equipe/funcionarios_editar.html', context)
