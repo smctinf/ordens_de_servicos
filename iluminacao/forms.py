@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm, ValidationError
-from .models import OrdemDeServico, Funcionario
+from .models import OrdemDeServico, Funcionario, OS_ext
 
 
 class OS_Form(ModelForm):    
@@ -17,3 +17,9 @@ class Funcionario_Form(ModelForm):
     class Meta:
         model = Funcionario
         fields = ['nome', 'telefone', 'cpf']
+
+class Equipe_Form(ModelForm):
+    class Meta:
+        model = OS_ext
+
+        exclude=['os']

@@ -8,9 +8,10 @@ urlpatterns = [
 
     path('os/painel/<id>', views.detalhes_os, name='detalhes_os'),
 
-    path('funcionario', views.funcionario_listar, name='funcionarios'),
-    path('funcionario/cadastrar', views.funcionario_cadastrar, name='cadastrar funcionarios'),
-    path('funcionario/editar/<id>', views.funcionario_editar, name='editar funcionarios')
+    path('funcionario', views.funcionarios_listar, name='funcionarios'),
+    path('funcionario/cadastrar', views.funcionario_cadastrar, name='cadastrar funcionario'),
+    path('funcionario/editar/<id>', views.funcionario_editar, name='editar funcionario'),
+    path('funcionario/deletar/<id>', views.funcionario_deletar, name='deletar funcionario'),
 
-
+    path('os/painel/<id>/equipe', views.atribuir_equipe, name='atribuir equipe')
 ]

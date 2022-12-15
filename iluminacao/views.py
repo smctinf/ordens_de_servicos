@@ -39,7 +39,7 @@ def detalhes_os(request, id):
     }
     return render(request, 'iluminacao/detalhes_os.html', context)
 
-def funcionario_listar(request):
+def funcionarios_listar(request):
     funcionarios=Funcionario.objects.all()
     context={
         'funcionarios': funcionarios
@@ -61,7 +61,7 @@ def funcionario_cadastrar(request):
 
 def funcionario_editar(request, id):
     funcionario=Funcionario.objects.get(id=id)
-    form_funcionario=Funcionario_Form(instance=funcionario)
+    form=Funcionario_Form(instance=funcionario)
     if request.method=='POST':
         form=Funcionario_Form(request.POST, instance=funcionario)
         if form.is_valid():
@@ -72,3 +72,12 @@ def funcionario_editar(request, id):
         'funcionario': funcionario
     }     
     return render(request, 'equipe/funcionarios_editar.html', context)
+
+def funcionario_deletar(request, id):
+    funcionario=Funcionario.objects.get(id=id)
+    funcionario.delete()
+
+    return redirect('funcionarios')
+
+def atribuir_equipe(request, id):
+    

@@ -27,14 +27,15 @@
                           <h4>
                             Lista de funcionários
                           </h4>
-                          <a href="{% url 'cadastrar funcionarios' %}" class="btn btn-primary">Adicionar</a>
+                          <a href="{% url 'cadastrar funcionario' %}" class="btn btn-primary">Adicionar</a>
                         </div>
                           <table class="table">
                             <thead>
                               <tr>
                                 <th>Nome</th>
                                 <th>Telefone</th>  
-                                <th>CPF</th>                                                              
+                                <th>CPF</th>
+                                <th>Editar</th>                                                         
                               </tr>
                             </thead>
                             <tbody>
@@ -43,6 +44,7 @@
                                 <td>{{f.nome}}</td>                                
                                 <td>{{f.telefone}}</td>
                                 <td>{{f.cpf}}</td>
+                                <td><a href="{% url 'editar funcionario' f.id %}"><i class="fa-solid fa-pen-to-square"></i></a></td>
                               </tr>
                               {% endfor %}
                             </tbody>
