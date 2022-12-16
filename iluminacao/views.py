@@ -80,4 +80,22 @@ def funcionario_deletar(request, id):
     return redirect('funcionarios')
 
 def atribuir_equipe(request, id):
-    
+    try:
+        instancia=OS_ext.objects.get(os=id)
+        form=Equipe_Form(instance=instancia)        
+    except Exception as e:
+        form=Equipe_Form(initial={'os': id})
+        instancia=None
+        
+    if request.method=='POST':
+        if instancia:
+            form=Equipe_Form(request.POST, instance=instancia)
+        else:
+            form=Equipe_Form(request.POST)
+        if form.is_valid:
+            form.save()
+            return redirect('detalhes_os', id)
+    context={
+            'form':form,
+        }
+    return render(request, 'iluminacao/adicionar_ext.html', context)

@@ -21,5 +21,9 @@ class Funcionario_Form(ModelForm):
 class Equipe_Form(ModelForm):
     class Meta:
         model = OS_ext
+        widgets = {
+            'equipe': forms.CheckboxSelectMultiple(),
+            'os': forms.HiddenInput()
 
-        exclude=['os']
+        }        
+        exclude=[]

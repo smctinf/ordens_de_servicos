@@ -33,9 +33,13 @@ class Contribuinte(models.Model):
     nome = models.CharField(max_length=100)
 
 class Funcionario(models.Model):
+
+    def __str__(self):
+        return self.nome
+
     telefone = models.CharField(max_length=14, verbose_name='Telefone', blank=True)
     cpf = models.CharField(max_length=14, verbose_name='CPF')
-    nome = models.CharField(max_length=100)
+    nome = models.CharField(max_length=100, verbose_name='Nome do funcionário')
 
 class OrdemDeServico(models.Model):
     STATUS_CHOICES=(
