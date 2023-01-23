@@ -47,11 +47,32 @@
                             {% endfor %}
                             </tbody>
                           </table>
+                          
                           <a href="">Visualizar histórico de movimentação</a>
                         </div>
                     </div>
-                    
                 </div>
+
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination justify-content-center">
+              
+                  {% if materiais.has_previous %}
+                  {% comment %} <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li> {% endcomment %}
+                    <li class="page-item"><a class="page-link" href="?page={{ materiais.previous_page_number }}">&laquo; anterior</a></li>
+                  {% endif %}
+              
+                  {% for x in materiais.page_range %}
+                    <li class="page-item {% if x == materiais.number  %} disabled {% endif %}"><a class="page-link" href="?page={{ x }}">{{x}}</a></li>
+                  {% endfor %}
+              
+                    {% if materiais.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ materiais.next_page_number }}">próximo &raquo;</a></li>
+                      {% comment %} <li class="page-item"><a class="page-link" href="?page={{ materiais.paginator.num_pages }}">last &raquo;</a></li> {% endcomment %}
+                  {% endif %}
+                    </li>
+                  </ul>
+                  </nav>
+
             </div>
         </div>    
   </div>

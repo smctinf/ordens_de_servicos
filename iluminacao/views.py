@@ -1,30 +1,40 @@
 from django.shortcuts import render, redirect
 from .forms import *
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 def index(request):
     return render(request, 'index.html')
 
 def os_index(request):
-    oss=OrdemDeServico.objects.all()
+    data=OrdemDeServico.objects.all()
+    paginator = Paginator(data, 30)
+    page = request.GET.get('page', 1)
+    ordens_de_servico = paginator.get_page(page)
+    
     context={
-        'oss': oss
+        'ordens_de_servico': ordens_de_servico
     }
     return render(request, 'iluminacao/index.html', context)
 
 
 @login_required
 def add_os(request):
+    form = OS_Form(initial={'tipo': '1'})
+
     if request.method=='POST':
         form=OS_Form(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('add_os')
-    else:
-        form=OS_Form(initial={'tipo': '1'})
+            return redirect('index')
+            
+        print(form.erros)
+
+
     context={
         'form': form
     }
+
     return render(request, 'iluminacao/adicionar_os.html', context)
 
 

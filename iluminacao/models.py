@@ -23,7 +23,7 @@ class Endereco(models.Model):
 class Tipo_OS(models.Model):
     
     nome=models.CharField(max_length=100, verbose_name='Tipo de OS', blank=True)
-    sigla=models.CharField(max_length=10, verbose_name='Tipo de OS', blank=True, null=True)
+    sigla=models.CharField(max_length=10, verbose_name='Sigla', blank=True, null=True)
     def __str__(self):
         return self.nome
 

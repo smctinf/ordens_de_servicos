@@ -5,12 +5,17 @@ from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import login_required
 from django.core.serializers.json import DjangoJSONEncoder
+from django.core.paginator import Paginator
 
 from .models import *
 from .forms import *
 
 def index(request):
-    materiais = Material.objects.all()
+    data = Material.objects.all()
+    paginator = Paginator(data, 30)
+    page = request.GET.get('page', 1)
+    materiais = paginator.get_page(page)
+
     context = {
         'materiais': materiais
     }

@@ -40,7 +40,7 @@
                               </tr>
                             </thead>
                             <tbody>
-                              {% for os in oss %}
+                              {% for os in ordens_de_servico %}
                               <tr>
                                 <td>
                                   <a href="{% url 'detalhes_os' os.id %}" style="text-decoration: none;">
@@ -74,48 +74,31 @@
                           </table>
                         </div>
                     </div>
-                    
+                    <nav aria-label="Page navigation example">
+                      <ul class="pagination justify-content-center">
+                  
+                      {% if ordens_de_servico.has_previous %}
+                      {% comment %} <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li> {% endcomment %}
+                        <li class="page-item"><a class="page-link" href="?page={{ ordens_de_servico.previous_page_number }}">&laquo; anterior</a></li>
+                      {% endif %}
+                  
+                      {% for x in ordens_de_servico.page_range %}
+                        <li class="page-item {% if x == ordens_de_servico.number  %} disabled {% endif %}"><a class="page-link" href="?page={{ x }}">{{x}}</a></li>
+                      {% endfor %}
+                  
+                        {% if ordens_de_servico.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ ordens_de_servico.next_page_number }}">próximo &raquo;</a></li>
+                          {% comment %} <li class="page-item"><a class="page-link" href="?page={{ ordens_de_servico.paginator.num_pages }}">last &raquo;</a></li> {% endcomment %}
+                      {% endif %}
+                        </li>
+                      </ul>
+                      </nav>
                 </div>
             </div>
         </div>    
   </div>
 </div>
-<!-- MODAL -->
-<div class="modal fade" id="formCandidato" aria-hidden="true" aria-labelledby="formCandidatoLabel" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-dark text-center" id="exampleModalToggleLabel">CANDIDATAR-SE A ESCOLINHA DE SKATE</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body text-dark">            
-            <form id="form" action="#">
-                
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" data-bs-target="#confirmarCadastro" data-bs-toggle="modal" onclick="enviarFormulario()">Enviar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="confirmarCadastro" aria-hidden="true" aria-labelledby="confirmarCadastroLabel2" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-dark" id="exampleModalToggleLabel2">RESPOSTA AQUI</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Hide this modal and show the first with the button below.
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" data-bs-target="#formCandidato" data-bs-toggle="modal">Voltar ao formulário</button>
-          <button class="btn btn-success" data-bs-dismiss="modal" aria-label="Close">Confirmar informações</button>
-        </div>
-      </div>
-    </div>
-  </div>  
+
   <script>
    
   </script>
