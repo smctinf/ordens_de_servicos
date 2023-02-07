@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import *
+from .models import Pessoa
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 
@@ -20,12 +21,16 @@ def os_index(request):
 
 @login_required
 def add_os(request):
-    form = OS_Form(initial={'tipo': '1'})
+    
+    form = OS_Form()
 
     if request.method=='POST':
         form=OS_Form(request.POST)
         if form.is_valid():
-            form.save()
+            os=form.save(commit=False)
+            os.contribuinte=Pessoa. objects.get(user=request.user)
+            os.save()
+
             return redirect('index')
             
         print(form.erros)
@@ -50,7 +55,7 @@ def detalhes_os(request, id):
     return render(request, 'iluminacao/detalhes_os.html', context)
 
 def funcionarios_listar(request):
-    funcionarios=Funcionario.objects.all()
+    funcionarios=Funcionario_OS.objects.all()
     context={
         'funcionarios': funcionarios
     }
